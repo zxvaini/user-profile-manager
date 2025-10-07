@@ -1,10 +1,4 @@
 # user-profile-manager
-Berikut isi **README.md** yang bisa langsung kamu **copy-paste ke GitHub** tanpa emoji dan tanpa format AI:
-
----
-
-# User Profile Manager
-
 Aplikasi sederhana untuk manajemen pengguna dengan fitur simpan dan tampil data user menggunakan **Node.js + Express + Supabase + EJS**.
 Aplikasi ini dibuat sebagai implementasi studi kasus koneksi aplikasi dengan database PostgreSQL di platform **Supabase** dan deploy di **Vercel**.
 
