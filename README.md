@@ -17,10 +17,11 @@ Aplikasi sederhana untuk manajemen pengguna dengan fitur simpan dan tampil data 
 ```
 
 user-profile-manager/
+├─ public/
+│  └─ style.css
 ├─ uploads/
 ├─ views/
 │  └─ index.ejs
-│  └─ style.css
 ├─ db.js
 ├─ server.js
 ├─ .env
