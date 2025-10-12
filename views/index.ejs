@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management Dashboard</title>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <header class="header">
+      <h1>👤 User Management</h1>
+      <p>Add and manage users with profile pictures in a beautiful, modern interface.</p>
+    </header>
+
+    <main class="container">
+      <!-- Add New User -->
+      <section class="add-user-section">
+        <form id="userForm" enctype="multipart/form-data" class="user-form">
+          <h2>Add New User</h2>
+
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="Enter full name" required />
+
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="Enter email address" required />
+
+          <label>Profile Photo</label>
+          <div class="photo-upload">
+            <input type="file" name="photo" id="photo" />
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="btn save">Save User</button>
+            <button type="reset" class="btn cancel">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Team Members -->
+      <section class="team-section">
+        <h2>👥 Team Members</h2>
+        <p><%= users.length %> total users</p>
+
+        <div class="user-list">
+          <% users.forEach(user => { %>
+            <div class="user-card">
+              <img src="<%= user.photo_url ? '/uploads/' + user.photo_url : 'https://via.placeholder.com/80' %>" alt="User Photo" />
+              <div class="info">
+                <h3><%= user.name %></h3>
+                <p><%= user.email %></p>
+                <span class="status active">● Active</span>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+    </main>
+
+    <script>
+document.getElementById("userForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); // Biar tidak reload halaman
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const response = await fetch("/add", {
+    method: "POST",
+    body: formData,
+  });
+
+  const result = await response.json();
+
+  if (result.success) {
+    alert("✅ User berhasil ditambahkan!");
+    location.reload(); // refresh data biar langsung muncul
+  } else {
+    alert("❌ Gagal menambah user: " + (result.message || "Unknown error"));
+  }
+});
+</script>
+
+  </body>
+</html>
